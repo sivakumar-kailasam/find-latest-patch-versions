@@ -1,15 +1,21 @@
 {
   "name": "find-latest-patch-versions",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Returns latest patch version among passed in semver strings",
+  "repository": "https://github.com/sivakumar-kailasam/find-latest-patch-versions.git",
   "license": "MIT",
   "author": "Sivakumar Kailasam <siva@rubberduck.engineering>",
-  "repository": "https://github.com/sivakumar-kailasam/find-latest-patch-versions.git",
-  "description": "Returns latest patch version among passed in semver strings",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
   "dependencies": {
     "lodash.groupby": "^4.6.0",
     "lodash.values": "^4.3.0",
     "semver-compare": "^1.0.0",
     "semver-utils": "^1.1.4"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0"
   }
 }
