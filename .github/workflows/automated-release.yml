@@ -30,10 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         name: Checkout code
-      - uses: borales/actions-yarn@v2.0.0
-        name: publish
-        with:
-          cmd: publish
+      - name: Automated releases for npm packages.
+        uses: mikeal/merge-release@v4.0.7
         env:
-          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        
