@@ -1,6 +1,6 @@
 {
   "name": "find-latest-patch-versions",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Returns latest patch version among passed in semver strings",
   "repository": "https://github.com/sivakumar-kailasam/find-latest-patch-versions.git",
   "license": "MIT",

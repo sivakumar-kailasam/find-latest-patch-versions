@@ -3,32 +3,37 @@ name: Automated release
 on: [push]
 
 jobs:
-  build:
-     runs-on: ubuntu-latest
-     
-     strategy:
+  ci:
+    runs-on: ubuntu-latest
+
+    strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
 
-     steps:
-       - uses: actions/checkout@v1
-       - name: Use Node.js ${{ matrix.node-version }}
-         uses: actions/setup-node@v1
-         with:
-            node-version: ${{ matrix.node-version }}
-       - name: npm install and test
-         run: |
-            npm ci
-            npm test
-         env:
-            CI: true
+    steps:
+      - uses: actions/checkout@v1
+        name: Checkout code
+      - uses: borales/actions-yarn@v2.0.0
+        name: install deps
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.0.0
+        name: run tests
+        with:
+          cmd: test
+        env:
+          CI: true
   publish:
-
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [ci]
 
     steps:
-    - name: Automated release
-      uses: mikeal/merge-release@2.2.6
-      env:
-        CI: true
+      - uses: actions/checkout@v1
+        name: Checkout code
+      - uses: borales/actions-yarn@v2.0.0
+        name: publish
+        with:
+          cmd: publish
+        env:
+          CI: true
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
